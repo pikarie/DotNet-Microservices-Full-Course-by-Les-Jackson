@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "bcb95a4a-82fa-4608-bfdd-4c82ad86a47b",
+		"name": ".NET Microservices – Full Course",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Note: Nginx requests are not working properly even when docker and kubernetes stuff are running. I would have to debug and fix something not working with the grpc.",
+			"item": []
+		},
+		{
+			"name": "local dev API",
+			"item": [
+				{
+					"name": "Platform Service",
+					"item": [
+						{
+							"name": "Get an individual platform",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5074/api/platforms"
+							},
+							"response": []
+						},
+						{
+							"name": "Create platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Docker\",\r\n    \"publisher\": \"PublisherName\",\r\n    \"cost\": \"Free\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5074/api/platforms"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Command Service",
+					"item": [
+						{
+							"name": "Get all platforms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5074/api/platforms"
+							},
+							"response": []
+						},
+						{
+							"name": "Create platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Docker\",\r\n    \"publisher\": \"PublisherName\",\r\n    \"cost\": \"Free\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5074/api/platforms"
+							},
+							"response": []
+						},
+						{
+							"name": "Create platform ex 2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"aaa\",\r\n    \"publisher\": \"bbb\",\r\n    \"cost\": \"ccc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5074/api/platforms"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Kubernetes (Node Port)",
+			"item": [
+				{
+					"name": "Get all platforms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{kubernetes-port}}/platforms"
+					},
+					"response": []
+				},
+				{
+					"name": "Create platform",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Docker\",\r\n    \"publisher\": \"PublisherName\",\r\n    \"cost\": \"Free\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{server}}/platforms"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kubernetes (Nginx)",
+			"item": [
+				{
+					"name": "Commands Service (Nginx)",
+					"item": [
+						{
+							"name": "Get all platforms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{nginx}}/commands/platforms"
+							},
+							"response": []
+						},
+						{
+							"name": "Get all commands for a platform",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{nginx}}/commands/platforms/1/commands"
+							},
+							"response": []
+						},
+						{
+							"name": "Create command for platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"HowTo\": \"Push a docker container to hub\",\r\n    \"CommandLine\": \"docker push <name of container>\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{nginx}}/commands/platforms/17/commands"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Platform Service (Nginx)",
+					"item": [
+						{
+							"name": "Get all platforms",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{nginx}}/platforms"
+							},
+							"response": []
+						},
+						{
+							"name": "Create platform",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AnotherTest2\",\r\n    \"publisher\": \"MyPublisher\",\r\n    \"cost\": \"200$\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{nginx}}/platforms"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
